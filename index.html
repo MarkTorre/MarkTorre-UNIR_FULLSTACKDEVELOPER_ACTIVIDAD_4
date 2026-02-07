@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./class/style.css">
+</head>
+<body>
+    <header>
+        <span id="logo" class="bold"> agoodshop </span>
+        <div id="header-separator"></div>
+    </header>
+    
+    <div id = "content-shop">
+        <div id = "content-products">
+            <!--ToDo: generar en javascript-->
+            <div id="grid-products">
+                <div>Producto</div>
+                <div>Cantidad</div>
+                <div>Unidad</div>
+                <div>Total</div>
+                <div id="grid-head-separator"> </div>
+
+                <div class="product padding-rows"> 
+                    <span class="product-name bold"> IFhone 13 Pro</span>
+                    <span class="product-ref"> Ref: 0K3QOSOV4V</span>
+                </div>
+
+                <div class="qty padding-rows"> 
+                    <button class="bttns-qty">-</button>
+                    <div id="qty-box">
+                        <div>3</div>
+                    </div>
+                    <button class="bttns-qty">+</button>
+                </div>
+
+                <div class="unity padding-rows">938,99€</div>
+                <div class="total padding-rows">2816,97€</div>
+                <div id="product-separator"></div>
+            </div>
+        </div>
+        
+        <div id="content-total">
+            <!--ToDo: generar en javascript-->
+            <div id="total-tittle" class="bold">Total</div>
+            <div class="product">
+                <span>iFhone 13 Pro</span>
+                <div>2816,97€</div>
+            </div>
+            <div class="product">
+                <span>Funda de piel</span>
+                <div> 159,98€</div>
+            </div>
+            <div id="total-separator"> </div>
+            <div id="total-products">
+                <span>TOTAL</span>
+                <div class="bold">5820€</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
