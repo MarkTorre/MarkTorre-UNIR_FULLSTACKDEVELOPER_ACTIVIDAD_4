@@ -13,4 +13,13 @@ export class Carrito {
             producto["quantity"] = 1;
         }
     }
+
+    actualizarUnidades(sku, unidades) {
+        this.productos.find( function(producto) {
+            if (producto["sku"] == sku){
+                producto["quantity"] = unidades;
+            }
+        }
+        )
+    }
 }
