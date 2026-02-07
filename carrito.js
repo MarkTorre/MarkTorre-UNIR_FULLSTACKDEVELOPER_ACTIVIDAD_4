@@ -22,4 +22,16 @@ export class Carrito {
         }
         )
     }
+
+     obtenerInformacionProducto(sku) {
+        this.productos.find(function(producto) {
+            if(sku == producto["sku"]){
+                return {
+                    "sku": producto["sku"],
+                    "quantity":producto["quantity"] 
+                }
+            }
+        }
+        )
+    }
 }
