@@ -1,0 +1,161 @@
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --my-grey1: rgb(238, 238, 238);
+    --my-grey2: rgb(222, 222, 222);
+    --my-grey3: rgb(170, 170, 170);
+    --padding-product-rows: 10px 0px 10px 0px;
+}
+
+/*1. Header*/
+header {
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+}
+
+header #logo {
+    padding: 10px 0px 10px 30px;
+}
+
+#header-separator {
+    flex:auto;
+    height: 1px;
+    width: 100%;
+    background-color: var(--my-grey2);
+}
+
+
+/*2. Body*/
+body {
+    margin: 0px;
+}
+
+#content-shop {
+    display: flex;
+    flex-direction: row;
+    padding:30px;
+}
+
+#content-products {
+    flex:1;
+    padding-right: 20px;
+}
+
+#grid-products {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+}
+
+#grid-head-separator {
+  background-color: var(--my-grey2);
+  height: 2px;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+
+.product {
+   display: flex;
+   flex-direction: column; 
+}
+
+.bold {
+    color: black;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.product-name {
+    color: black;
+    font-size: 16px;
+    font-style: normal;
+}
+
+.product-ref {
+    color: black;
+    font-size: 10px;
+    font-style: normal;
+}
+
+.qty {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items:center;
+}
+
+.unity {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.total {
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.padding-rows {
+    padding: 20px 0px 20px 0px;
+}
+
+.bttns-qty {
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0px 5px 0px 5px;
+}
+
+#qty-box {
+    border-width:1px;
+    border-color: var(--my-grey2);
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#product-separator {
+    height: 1px;
+    background-color: var(--my-grey1);
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 4;
+
+}
+
+#content-total {
+    width: 400px;
+    background-color: var(--my-grey1);
+    padding:10px;
+}
+
+#content-total > .product {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+#total-tittle {
+    padding-bottom: 10px;
+}
+
+#total-products {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#total-separator {
+  background-color: var(--my-grey2);
+  height: 1px;
+  margin: 20px 0px 20px 0px;
+}
+
+
+
+/*2. Grid Shop*/
