@@ -34,4 +34,23 @@ export class Carrito {
         }
         )
     }
+
+    obtenerCarrito(){
+      // Devuelve información de los productos añadidos al carrito
+      // Además del total calculado de todos los productos
+      // Filtramos solo los productos que se han añadido al carrito. Es decir qty > 0
+    
+      let productos = this.productos.filter( function(producto) {
+            if(producto["quantity"]>0) {
+                return producto;
+            }
+        }
+      )
+
+      return {
+         "total": this.total,
+         "currency": this.currency,
+         "products" : productos
+        }
+    }
 }
