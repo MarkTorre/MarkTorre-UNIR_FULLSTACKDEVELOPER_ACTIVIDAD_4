@@ -2,7 +2,6 @@
 export class Carrito {
      constructor(productos){
         this.productos = productos["products"];
-        this.total = 0;
         this.currency = productos["currency"];
         this.#initProductos()
     }
@@ -65,8 +64,13 @@ export class Carrito {
         }
       )
 
+      let total = 0;
+      for(let producto of this.productos) {
+        total += Number(this.obtenerProductoPrecioTotal(producto.SKU));       
+      }
+
       return {
-         "total": this.total,
+         "total": total.toFixed(2),
          "currency": this.currency,
          "products" : productos
         }

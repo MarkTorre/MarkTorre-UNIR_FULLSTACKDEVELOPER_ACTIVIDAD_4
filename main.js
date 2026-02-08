@@ -17,8 +17,10 @@ tiendaProductos(carrito);
 // 5. Generar la tienda de productos 
 function tiendaProductos(carrito){
       const nodoGridProductos = document.querySelector('#grid-products');
-      console.log(nodoGridProductos);
-      console.log(carrito.productos);
+      const nodoContentTotal = document.querySelector('#content-total');
+      const nodoPrecioTotal = document.querySelector("#precio-total");
+       const nodoProductosTotal = document.querySelector("#total-content-products");
+     
 
       carrito.productos.forEach(function(product, index) {
             // create elements
@@ -64,7 +66,6 @@ function tiendaProductos(carrito){
             nodoQtyBox.appendChild(nodoQtyValue);
             nodoQty.appendChild(nodoButtonPlus);
 
-
             /*Unity*/
             const nodoUnity = document.createElement('div');
             // add
@@ -99,6 +100,12 @@ function tiendaProductos(carrito){
                   // Actualizo el HTML
                   nodoQtyValue.innerText = unidades;
                   nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
+                  // Actualizo los productos añadidos al carrito en HTML
+                  nodoProductosTotal.innerHTML = "";
+                  
+                  // Actualizo el precio total del carrito en el HTML
+                  let carritoProducto = carrito.obtenerCarrito();
+                  nodoPrecioTotal.innerText = carritoProducto.total;
             }); 
             nodoButtonPlus.addEventListener('click',function(){
                   let sku = nodoButtonPlus.dataset.sku;
@@ -109,39 +116,45 @@ function tiendaProductos(carrito){
                   // Actualizo el HTML
                   nodoQtyValue.innerText = unidades;
                   nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
-
+                  // Actualizo los productos añadidos al carrito en HTML
+                  nodoProductosTotal.innerHTML = "";
+                  // Actualizo el precio total del carrito en el HTML
+                  let carritoProducto = carrito.obtenerCarrito();
+                  nodoPrecioTotal.innerText = carritoProducto.total;
             }); 
-     
       });
 
+      const nodoProduct = document.createElement('div');
+      const nodoProductName = document.createElement('span');
+      const nodoTotalPrice = document.createElement('div');
+      
+      nodoProduct.classList.add('product');
+      nodoProductName.
+      nodoTotalPrice.
+      nodoProduct.classList.add("product");
+      
+      
       
 
       
-      
-      
-      
-      // ToDo: Incrementar cantidades
-      
-
-      
-      
+      // ToDo: Incrementar cantidades    
 }
 
 /*
-  <div class="product padding-rows"> 
-        <span class="product-name bold"> IFhone 13 Pro</span>
-        <span class="product-ref"> Ref: 0K3QOSOV4V</span>
-  </div>
-
-  <div class="qty padding-rows"> 
-        <button class="bttns-qty">-</button>
-        <div id="qty-box">
-            <div>3</div>
-        </div>
-        <button class="bttns-qty">+</button>
-  </div>
-
-  <div class="unity padding-rows">938,99€</div>
-  <div class="total padding-rows">2816,97€</div>
-  <div id="product-separator"></div>
+<div id="content-total">
+      <div id="total-tittle" class="bold">Total</div>
+      <div class="product">
+            <span>iFhone 13 Pro</span>
+            <div>2816,97€</div>
+      </div>
+      <div class="product">
+            <span>Funda de piel</span>
+            <div> 159,98€</div>
+      </div>
+      <div id="total-separator"> </div>
+      <div id="total-products">
+            <span>TOTAL</span>
+            <div class="bold">5820€</div>
+      </div>
+</div>
 */

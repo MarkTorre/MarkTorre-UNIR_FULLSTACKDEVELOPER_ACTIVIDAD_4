@@ -141,7 +141,7 @@ body {
     padding-bottom: 10px;
 }
 
-#total-products {
+.total-products {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
