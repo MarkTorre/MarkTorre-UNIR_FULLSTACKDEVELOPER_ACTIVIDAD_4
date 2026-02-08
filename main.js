@@ -5,75 +5,128 @@ import {Carrito } from "./carrito.js"
 // Nota: en este caso uso la carpeta local testAPI porque la pagina joblob no funciona.
 let promProductos = await fetch("./testAPI/products.json");
 
-// 2. Generar lista de Productos
-// 3. Instanciar Carrito con la lista de productos
+// 2. Obtener lista de Productos
+let productos = await promProductos.json();
 
-let productos = await promProductos.json()
+// 4. Instanciar Carrito con la lista de productos
+let carrito = new Carrito(productos);
+tiendaProductos(carrito);
 
-let carrito = new Carrito(productos) 
 
-function tiendaProductos(Carrito){
-     // Genera los prodctos de la tienda 
-}
-// 4. 
-function addProduct(id){
+
+// 5. Generar la tienda de productos 
+function tiendaProductos(carrito){
       const nodoGridProductos = document.querySelector('#grid-products');
       console.log(nodoGridProductos);
+      console.log(carrito.productos);
 
-      /* Product */
-      const nodoProduct = document.createElement('div');
-      const nodoProductName = document.createElement("span");
-      const nodoProductRef = document.createElement("span");
+      carrito.productos.forEach(function(product, index) {
+            // create elements
+            const nodoProduct = document.createElement('div');
+            const nodoProductName = document.createElement("span");
+            const nodoProductRef = document.createElement("span");
+            // add content
+            nodoProductName.innerText = carrito.productos[index]['title'];
+            nodoProductRef.innerText =`Ref: ${ carrito.productos[index]['SKU']}`;
+            // add style
+            nodoProduct.classList.add("product", "padding-rows");
+            nodoProductName.classList.add("product-name", "bold");
+            nodoProductRef.classList.add("product-ref");
+            // Insert in HTML
+            nodoGridProductos.appendChild(nodoProduct);
+            nodoProduct.appendChild(nodoProductName);
+            nodoProduct.appendChild(nodoProductRef);   
 
-      nodoProduct.classList.add("product", "padding-rows");
-      nodoProductName.classList.add("product-name", "bold");
-      nodoProductRef.classList.add("product-ref");
+            /*Quantity*/ 
+            const nodoQty = document.createElement('div');
+            const nodoButtonMinus = document.createElement('button');
+            const nodoQtyBox = document.createElement('div');
+            const nodoQtyValue =  document.createElement('div');
+            const nodoButtonPlus = document.createElement('button');
+             // add content
+            nodoButtonMinus.innerText = '-';
+            nodoQtyValue.innerText = carrito.productos[index]['quantity'];
+            nodoButtonPlus.innerText = "+";
+            nodoButtonPlus.innerText = "+";
+            // añadimos un attributo personalizado data para asociarlo a la referencia del producto
+            nodoButtonMinus.setAttribute("data-sku", carrito.productos[index]['SKU']); 
+            nodoButtonPlus.setAttribute("data-sku", carrito.productos[index]['SKU']);
+            //
+            nodoQty.classList.add("qty", "padding-rows");
+            nodoButtonMinus.classList.add("bttns-qty");
+            nodoQtyBox.classList.add("qty-box");
+            nodoButtonPlus.classList.add("bttns-qty");
+    
+            //
+            nodoGridProductos.appendChild(nodoQty);
+            nodoQty.appendChild(nodoButtonMinus);
+            nodoQty.appendChild(nodoQtyBox);
+            nodoQtyBox.appendChild(nodoQtyValue);
+            nodoQty.appendChild(nodoButtonPlus);
+
+
+            /*Unity*/
+            const nodoUnity = document.createElement('div');
+            // add
+            nodoUnity.innerText =  carrito.productos[index]['price']+"€";
+            nodoUnity.classList.add("unity", "padding-rows");
+            nodoGridProductos.appendChild(nodoUnity);
+            //ToDo: Cantidad de productos.
+
+            /*Total*/
+            const nodoTotal = document.createElement('div');
+            nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
+            nodoTotal.classList.add("total", "padding-rows");
+            nodoGridProductos.appendChild(nodoTotal);
+            //ToDo: Actualizar valor total segun el valor de cantidad de productos      
+            /* Product */
+
+            /*Separator*/
+            const nodoSeparator = document.createElement('div');
+            nodoSeparator.classList.add("product-separator");
+            nodoGridProductos.appendChild(nodoSeparator);
+            
+            // Eventos
+            nodoButtonMinus.addEventListener('click',function(){
+                  let sku = nodoButtonMinus.dataset.sku;
+                  console.log(sku)
+                  // Obtener cantidad del carrito
+                  let unidades = carrito.obtenerUnidades(sku);
+                  // Filtramos con el operador ternario para decrementar las unidades sin que se llegue a números negativos
+                  unidades = (unidades > 0) ? unidades-1 : 0;  
+                  // Actualizo el carrito
+                  carrito.actualizarUnidades(sku, unidades);
+                  // Actualizo el HTML
+                  nodoQtyValue.innerText = unidades;
+                  nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
+            }); 
+            nodoButtonPlus.addEventListener('click',function(){
+                  let sku = nodoButtonPlus.dataset.sku;
+                  // Obtener cantidad del carrito
+                  let unidades = carrito.obtenerUnidades(sku);
+                  // Actualizo el carrito
+                  carrito.actualizarUnidades(sku, ++unidades);
+                  // Actualizo el HTML
+                  nodoQtyValue.innerText = unidades;
+                  nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
+
+            }); 
+     
+      });
+
       
-      console.log(nodoGridProductos)
-      nodoGridProductos.appendChild(nodoProduct);
-      nodoProduct.appendChild(nodoProductName);
-      nodoProduct.appendChild(nodoProductRef);
+
       
-      /*Quantity*/ 
-      const nodoQty = document.createElement('div');
-      const nodoButtonMinus = document.createElement('button');
-      const nodoQtyBox = document.createElement('div');
-      const nodoQtyValue =  document.createElement('div');
-      const nodoButtonPlus = document.createElement('button');
-
-      nodoQty.classList.add("product", "padding-rows");
-      nodoButtonMinus.classList.add("bttns-qty");
-      nodoQtyBox.classList.add("qty-box");
-      nodoButtonPlus.classList.add("bttns-qty");
-
-      nodoGridProductos.appendChild(nodoQty);
-      nodoQty.appendChild(nodoButtonMinus);
-      nodoQty.appendChild(nodoQtyBox);
-      nodoQtyBox.appendChild(nodoQtyValue);
-      nodoQty.appendChild(nodoButtonMinus);
       
-      //nodoButtonMinus.addEventListener('click',); // ToDo: decrementar cantidades
-      //nodoButtonPlus.addEventListener('click',);  // ToDo: Incrementar cantidades
       
-      /*Unity*/
-      const nodoUnity = document.createElement('div');
-      nodoUnity.classList.add("unity", "padding-rows");
-      nodoGridProductos.appendChild(nodoUnity);
-      //ToDo: Cantidad de productos.
+      
+      // ToDo: Incrementar cantidades
+      
 
-      /*Total*/
-      const nodoTotal = document.createElement('div');
-      nodoTotal.classList.add("total", "padding-rows");
-      nodoGridProductos.appendChild(nodoTotal);
-      //ToDo: Actualizar valor total segun el valor de cantidad de productos
-
-      /*Separator*/
-      const nodoSeparator = document.createElement('div');
-      nodoSeparator.classList.add("product-separator");
-      nodoGridProductos.appendChild(nodoSeparator);
+      
+      
 }
-addProduct(1);
-addProduct(1);
+
 /*
   <div class="product padding-rows"> 
         <span class="product-name bold"> IFhone 13 Pro</span>

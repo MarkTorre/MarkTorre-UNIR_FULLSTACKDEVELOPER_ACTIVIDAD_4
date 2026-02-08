@@ -10,22 +10,40 @@ export class Carrito {
     #initProductos(){
         // Añade el parametro quantity a cada producto
         for(let producto of this.productos) {
-            producto["quantity"] = 1;
+            producto.quantity = 0;
         }
     }
 
+  
+
     actualizarUnidades(sku, unidades) {
-        this.productos.find( function(producto) {
-            if (producto["sku"] == sku){
-                producto["quantity"] = unidades;
-            }
+        for(let producto of this.productos) {
+            if(producto.SKU === sku){
+                producto.quantity = unidades;
+            } 
         }
-        )
+    }
+
+    obtenerUnidades(sku){
+         for(let producto of this.productos) {
+            if(producto.SKU === sku){
+                return producto.quantity;
+            } 
+        }
+    }
+
+    obtenerProductoPrecioTotal(sku){
+        for(let producto of this.productos) {
+            if(producto.SKU === sku){
+                let total = producto.quantity*producto.price;
+                return total.toFixed(2);
+            } 
+        }
     }
 
      obtenerInformacionProducto(sku) {
         this.productos.find(function(producto) {
-            if(sku == producto["sku"]){
+            if(sku == producto["SKU"]){
                 return {
                     "sku": producto["sku"],
                     "quantity":producto["quantity"] 
