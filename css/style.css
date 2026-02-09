@@ -128,7 +128,7 @@ body {
 #content-total {
     width: 400px;
     background-color: var(--my-grey1);
-    padding:10px;
+    padding:30px;
 }
 
 #content-total > .product {
@@ -138,13 +138,14 @@ body {
 }
 
 #total-tittle {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .total-products {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 #total-separator {
@@ -152,6 +153,8 @@ body {
   height: 1px;
   margin: 20px 0px 20px 0px;
 }
+
+
 
 
 
