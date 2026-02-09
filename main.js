@@ -153,34 +153,5 @@ function tiendaProductos(carrito){
                   // Actualizo el precio total del carrito en el HTML  
                   nodoPrecioTotal.innerText = carritoProducto.total+carritoProducto.currency;
             }); 
-      });
-
-      
-      
-      
-      
-      
-      
-
-      
-      // ToDo: Incrementar cantidades    
+      });   
 }
-
-/*
-<div id="content-total">
-      <div id="total-tittle" class="bold">Total</div>
-      <div class="product">
-            <span>iFhone 13 Pro</span>
-            <div>2816,97€</div>
-      </div>
-      <div class="product">
-            <span>Funda de piel</span>
-            <div> 159,98€</div>
-      </div>
-      <div id="total-separator"> </div>
-      <div id="total-products">
-            <span>TOTAL</span>
-            <div class="bold">5820€</div>
-      </div>
-</div>
-*/
