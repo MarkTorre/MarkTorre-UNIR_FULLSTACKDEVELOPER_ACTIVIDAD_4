@@ -1,5 +1,5 @@
 /**
- * Clase para gestionar un carrito de de la compra en una tienda online.
+ * Clase para gestionar un carrito de la compra en una tienda online.
  * Almacena la cantidad de productos y contabiliza los productos que
  * se quieren comprar.
  */

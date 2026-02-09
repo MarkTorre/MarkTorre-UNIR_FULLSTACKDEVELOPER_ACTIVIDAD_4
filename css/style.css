@@ -1,5 +1,11 @@
+@font-face {  /*i*/
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Noto_Sans/NotoSans-VariableFont_wdth,wght.ttf') format('truetype');
+}
+
 *{
     box-sizing: border-box;
+    font-family:'Montserrat'; /*Aplico la fuente a todo el proyecto por defecto.*/
 }
 
 :root{
@@ -66,7 +72,7 @@ body {
 .bold {
     color: black;
     font-style: normal;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .product-name {
@@ -138,6 +144,8 @@ body {
 }
 
 #total-tittle {
+    color: black;
+    font-size: 20px;
     padding-bottom: 20px;
 }
 
@@ -154,9 +162,6 @@ body {
   margin: 20px 0px 20px 0px;
 }
 
-
-
-
-
-
-/*2. Grid Shop*/
+#grid-products > .grid-producst-head {
+    padding-bottom: 10px;
+} 
