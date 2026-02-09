@@ -35,7 +35,8 @@ export class Carrito {
         for(let producto of this.productos) {
             if(producto.SKU === sku){
                 let total = producto.quantity*producto.price;
-                return total.toFixed(2);
+                total = total>0 ? total.toFixed(2) : 0;
+                return total;
             } 
         }
     }
@@ -68,9 +69,11 @@ export class Carrito {
       for(let producto of this.productos) {
         total += Number(this.obtenerProductoPrecioTotal(producto.SKU));       
       }
+      // Para no mostra decimales en caso de 0;
+      total = total>0 ? total.toFixed(2) : 0;
 
       return {
-         "total": total.toFixed(2),
+         "total": total,
          "currency": this.currency,
          "products" : productos
         }

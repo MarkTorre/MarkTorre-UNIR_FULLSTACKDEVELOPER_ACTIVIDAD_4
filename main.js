@@ -99,39 +99,65 @@ function tiendaProductos(carrito){
                   carrito.actualizarUnidades(sku, unidades);
                   // Actualizo el HTML
                   nodoQtyValue.innerText = unidades;
-                  nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
+                  nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index].SKU)+"€";
                   // Actualizo los productos añadidos al carrito en HTML
-                  nodoProductosTotal.innerHTML = "";
-                  
-                  // Actualizo el precio total del carrito en el HTML
                   let carritoProducto = carrito.obtenerCarrito();
-                  nodoPrecioTotal.innerText = carritoProducto.total;
+                  nodoProductosTotal.innerHTML = "";
+                  console.log(carritoProducto.products);
+                  for(const product of carritoProducto.products){
+                        // Create html elements
+                        const nodoProduct = document.createElement('div');
+                        const nodoProductName = document.createElement('span');
+                        const nodoTotalPrice = document.createElement('div');
+                        // Class
+                        nodoProduct.classList.add('total-products');
+                        // Add text
+                        nodoProductName.innerText = product.title; 
+                        nodoTotalPrice.innerText = carrito.obtenerProductoPrecioTotal(product.SKU)+carritoProducto.currency;
+                        // Insert HTML
+                        nodoProductosTotal.appendChild(nodoProduct);
+                        nodoProduct.appendChild(nodoProductName);
+                        nodoProduct.appendChild(nodoTotalPrice);
+                  }
+                  // Actualizo el precio total del carrito en el HTML
+                  nodoPrecioTotal.innerText = carritoProducto.total+carritoProducto.currency;
             }); 
             nodoButtonPlus.addEventListener('click',function(){
                   let sku = nodoButtonPlus.dataset.sku;
-                  // Obtener cantidad del carrito
                   let unidades = carrito.obtenerUnidades(sku);
+                  
                   // Actualizo el carrito
                   carrito.actualizarUnidades(sku, ++unidades);
                   // Actualizo el HTML
                   nodoQtyValue.innerText = unidades;
-                  nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index]['SKU'])+"€";
+                  nodoTotal.innerText= carrito.obtenerProductoPrecioTotal(carrito.productos[index].SKU)+"€";
                   // Actualizo los productos añadidos al carrito en HTML
-                  nodoProductosTotal.innerHTML = "";
-                  // Actualizo el precio total del carrito en el HTML
                   let carritoProducto = carrito.obtenerCarrito();
-                  nodoPrecioTotal.innerText = carritoProducto.total;
+                  nodoProductosTotal.innerHTML = "";
+                  console.log(carritoProducto.products);
+                  for(const product of carritoProducto.products){
+                        // Create html elements
+                        const nodoProduct = document.createElement('div');
+                        const nodoProductName = document.createElement('span');
+                        const nodoTotalPrice = document.createElement('div');
+                        // Class
+                        nodoProduct.classList.add('total-products');
+                        // Add text
+                        nodoProductName.innerText = product.title; 
+                        nodoTotalPrice.innerText = carrito.obtenerProductoPrecioTotal(product.SKU)+carritoProducto.currency;
+                        // Insert HTML
+                        nodoProductosTotal.appendChild(nodoProduct);
+                        nodoProduct.appendChild(nodoProductName);
+                        nodoProduct.appendChild(nodoTotalPrice);
+                  }
+                  // Actualizo el precio total del carrito en el HTML  
+                  nodoPrecioTotal.innerText = carritoProducto.total+carritoProducto.currency;
             }); 
       });
 
-      const nodoProduct = document.createElement('div');
-      const nodoProductName = document.createElement('span');
-      const nodoTotalPrice = document.createElement('div');
       
-      nodoProduct.classList.add('product');
-      nodoProductName.
-      nodoTotalPrice.
-      nodoProduct.classList.add("product");
+      
+      
       
       
       
